@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="EventAPITest" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-11-16T00:23:46" hostname="YUCEN" time="0.128">
+<testsuite name="EventAPITest" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-11-17T04:12:12" hostname="YUCEN" time="0.08">
   <properties/>
-  <testcase name="testPostEvent_fail()" classname="EventAPITest" time="0.033"/>
-  <testcase name="testGetEvent_fail()" classname="EventAPITest" time="0.006"/>
-  <testcase name="testDeleteEvent_fail()" classname="EventAPITest" time="0.007"/>
-  <testcase name="testPutEvent_success()" classname="EventAPITest" time="0.016"/>
-  <testcase name="testPostEvent_success()" classname="EventAPITest" time="0.015"/>
-  <testcase name="testGetEvent_success()" classname="EventAPITest" time="0.018"/>
-  <testcase name="testDeleteEvent_success()" classname="EventAPITest" time="0.014"/>
-  <testcase name="testPutEvent_fail()" classname="EventAPITest" time="0.01"/>
+  <testcase name="testPostEvent_fail()" classname="EventAPITest" time="0.017"/>
+  <testcase name="testGetEvent_fail()" classname="EventAPITest" time="0.005"/>
+  <testcase name="testDeleteEvent_fail()" classname="EventAPITest" time="0.005"/>
+  <testcase name="testPutEvent_success()" classname="EventAPITest" time="0.013"/>
+  <testcase name="testPostEvent_success()" classname="EventAPITest" time="0.014"/>
+  <testcase name="testGetEvent_success()" classname="EventAPITest" time="0.007"/>
+  <testcase name="testDeleteEvent_success()" classname="EventAPITest" time="0.008"/>
+  <testcase name="testPutEvent_fail()" classname="EventAPITest" time="0.008"/>
   <system-out><![CDATA[{"message":"Invalid Parameters","status":400}
 ]]></system-out>
   <system-err><![CDATA[java.net.BindException: Address already in use: bind
@@ -25,7 +25,7 @@
 	at org.restlet.Server.start(Server.java:579)
 	at org.restlet.Component.startServers(Component.java:642)
 	at org.restlet.Component.start(Component.java:567)
-	at MainServer.main(MainServer.java:16)
+	at MainServer.main(MainServer.java:17)
 	at EventAPITest.init(EventAPITest.java:25)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -102,47 +102,47 @@
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	POST	/event	-	200	45	78	10	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	GET	/event/0	-	200	43	0	2	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	DELETE	/event/0	-	200	43	0	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	POST	/event	-	200	26	99	2	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	PUT	/event	-	200	26	120	2	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	GET	/event	-	200	146	0	2	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	DELETE	/event/1	-	200	26	0	0	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	POST	/event	-	200	26	120	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	GET	/event	-	200	142	0	0	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	POST	/event	-	200	26	120	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	DELETE	/event/3	-	200	26	0	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	DELETE	/event/2	-	200	26	0	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	POST	/event	-	200	26	120	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	GET	/event	-	200	142	0	2	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	DELETE	/event/4	-	200	26	0	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	POST	/event	-	200	26	120	2	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	DELETE	/event/5	-	200	26	0	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	GET	/event	-	200	26	0	3	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	POST	/event	-	200	26	120	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	PUT	/event	-	200	45	90	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
-Nov 15, 2022 7:23:46 PM org.restlet.engine.log.LogFilter afterHandle
-INFO: 2022-11-15	19:23:46	127.0.0.1	-	-	8080	DELETE	/event/6	-	200	26	0	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	POST	/event	-	200	45	78	8	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	GET	/event/0	-	200	43	0	3	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	DELETE	/event/0	-	200	43	0	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	POST	/event	-	200	26	99	0	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	PUT	/event	-	200	26	120	0	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	GET	/event	-	200	146	0	0	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	DELETE	/event/1	-	200	26	0	2	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	POST	/event	-	200	26	120	0	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	GET	/event	-	200	142	0	2	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	POST	/event	-	200	26	120	0	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	DELETE	/event/3	-	200	26	0	0	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	DELETE	/event/2	-	200	26	0	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	POST	/event	-	200	26	120	0	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	GET	/event	-	200	142	0	0	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	DELETE	/event/4	-	200	26	0	2	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	POST	/event	-	200	26	120	2	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	DELETE	/event/5	-	200	26	0	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	GET	/event	-	200	26	0	0	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	POST	/event	-	200	26	120	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	PUT	/event	-	200	45	90	2	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
+Nov 16, 2022 11:12:12 PM org.restlet.engine.log.LogFilter afterHandle
+INFO: 2022-11-16	23:12:12	127.0.0.1	-	-	8080	DELETE	/event/6	-	200	26	0	1	http://localhost:8080	Apache-HttpClient/4.5.4 (Java/1.8.0_333)	-
 ]]></system-err>
 </testsuite>

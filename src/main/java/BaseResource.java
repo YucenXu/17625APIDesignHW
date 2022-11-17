@@ -11,61 +11,88 @@ import org.restlet.ext.json.JsonRepresentation;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Abstract class for resources.
+ */
 public abstract class BaseResource extends ServerResource {
-    String jsonString="";
+    String jsonString = "";
 
-
+    /**
+     * Handle get request.
+     *
+     * @return response
+     */
     @SuppressWarnings("rawtypes")
     @Get
-    public Representation doGet(){
-        Map json =null;
+    public Representation doGet() {
         jsonString = "";
         try {
-            jsonString = processRequest(json,"get");
+            jsonString = processRequest(null, "get");
         } catch (Exception e) {
             jsonString = getErrorResponse();
         }
         return new StringRepresentation(jsonString, MediaType.APPLICATION_JSON);
     }
 
+    /**
+     * Handle post request.
+     *
+     * @return response
+     */
     @Post("json")
-    public Representation doPost(Representation entity){
+    public Representation doPost(Representation entity) {
         Map json;
         jsonString = "";
         try {
+            // get request body
             JsonRepresentation represent = new JsonRepresentation(entity);
             JSONObject jsonobject = represent.getJsonObject();
             JSONParser parser = new JSONParser();
             String jsonText = jsonobject.toString();
+            // put request body into map
             json = (Map) parser.parse(jsonText);
-            jsonString = processRequest(json,"post");
+            // handle request
+            jsonString = processRequest(json, "post");
         } catch (Exception e) {
             jsonString = getErrorResponse();
         }
         return new StringRepresentation(jsonString, MediaType.APPLICATION_JSON);
     }
 
+    /**
+     * Handle put request.
+     *
+     * @return response
+     */
     @Put("json")
-    public Representation doPut(Representation entity){
+    public Representation doPut(Representation entity) {
         Map json = null;
         jsonString = "";
         try {
+            // get request body
             JsonRepresentation represent = new JsonRepresentation(entity);
             JSONObject jsonobject = represent.getJsonObject();
             JSONParser parser = new JSONParser();
             String jsonText = jsonobject.toString();
+            // put request body into map
             json = (Map) parser.parse(jsonText);
-            jsonString = processRequest(json,"put");
+            // handle request
+            jsonString = processRequest(json, "put");
         } catch (Exception e) {
             jsonString = getErrorResponse();
         }
         return new StringRepresentation(jsonString, MediaType.APPLICATION_JSON);
     }
 
+    /**
+     * Handle delete request.
+     *
+     * @return response
+     */
     @Delete("json")
-    public Representation doDelete(Representation entity){
+    public Representation doDelete(Representation entity) {
         try {
-            jsonString = processRequest(null,"delete");
+            jsonString = processRequest(null, "delete");
         } catch (Exception e) {
             jsonString = getErrorResponse();
 
@@ -73,16 +100,21 @@ public abstract class BaseResource extends ServerResource {
         return new StringRepresentation(jsonString, MediaType.APPLICATION_JSON);
     }
 
-    public abstract String processRequest(Map json,String method) throws Exception;
+    /**
+     * Abstract method to process request.
+     *
+     * @param json   request body
+     * @param method request method
+     * @return response string
+     * @throws Exception
+     */
+    public abstract String processRequest(Map json, String method) throws Exception;
 
-//    public static Map<String, String> getMapFromParam(Form form) {
-//        Map<String, String> map = new HashMap<String, String>();
-//        for (Parameter parameter : form) {
-//            map.put(parameter.getName(), parameter.getValue());
-//        }
-//        return map;
-//    }
-
+    /**
+     * Get Internal Server Error response.
+     *
+     * @return response string
+     */
     private String getErrorResponse() {
         JSONObject responseJson = new JSONObject();
         responseJson.put("status", 500);

@@ -3,7 +3,16 @@ import org.json.simple.JSONObject;
 
 import java.util.Map;
 
+/**
+ * Event resource class
+ */
 public class EventResource extends BaseResource {
+    /**
+     * Process request according to resource.
+     * @param json   request body
+     * @param method request method
+     * @return response string
+     */
     public String processRequest(Map json, String method) throws Exception {
         switch (method) {
             case "get":
@@ -13,11 +22,15 @@ public class EventResource extends BaseResource {
             case "put":
                 return handlePut(json);
             case "delete":
-                return handleDelete(json);
+                return handleDelete();
         }
         return "";
     }
 
+    /**
+     * Handle get request.
+     * @return response string
+     */
     public String handleGet() {
         JSONObject response = new JSONObject();
         Object eventID = getRequestAttributes().get("eventID");
@@ -49,6 +62,11 @@ public class EventResource extends BaseResource {
         return response.toString();
     }
 
+    /**
+     * Handle post request.
+     * @param json request body
+     * @return response string
+     */
     public String handlePost(Map json) {
         Event newEvent;
         JSONObject response = new JSONObject();
@@ -72,6 +90,11 @@ public class EventResource extends BaseResource {
         return response.toString();
     }
 
+    /**
+     * Handle put request.
+     * @param json request body
+     * @return response string
+     */
     public String handlePut(Map json) {
         JSONObject response = new JSONObject();
         try {
@@ -100,7 +123,12 @@ public class EventResource extends BaseResource {
         return response.toString();
     }
 
-    public String handleDelete(Map json) {
+    /**
+     * Handle delete request.
+     *
+     * @return response string
+     */
+    public String handleDelete() {
         JSONObject response = new JSONObject();
         try {
             Long eventID = Long.valueOf((String) getRequestAttributes().get("eventID"));

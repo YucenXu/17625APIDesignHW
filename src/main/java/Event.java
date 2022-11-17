@@ -19,11 +19,6 @@ public class Event {
         this.eventID = idCount;
     }
 
-//    @Override
-//    public String toString() {
-//        return this.toJson().toString();
-//    }
-
     public JSONObject toJson() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("eventID", eventID);

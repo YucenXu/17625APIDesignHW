@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EventResource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">A1</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">EventResource.java</span></div><h1>EventResource.java</h1><pre class="source lang-java linenums">import org.json.JSONArray;
+import org.json.simple.JSONObject;
+
+import java.util.Map;
+
+/**
+ * Event resource class
+ */
+<span class="fc" id="L9">public class EventResource extends BaseResource {</span>
+    /**
+     * Process request according to resource.
+     * @param json   request body
+     * @param method request method
+     * @return response string
+     */
+    public String processRequest(Map json, String method) throws Exception {
+<span class="pc bpc" id="L17" title="1 of 5 branches missed.">        switch (method) {</span>
+            case &quot;get&quot;:
+<span class="fc" id="L19">                return handleGet();</span>
+            case &quot;post&quot;:
+<span class="fc" id="L21">                return handlePost(json);</span>
+            case &quot;put&quot;:
+<span class="fc" id="L23">                return handlePut(json);</span>
+            case &quot;delete&quot;:
+<span class="fc" id="L25">                return handleDelete();</span>
+        }
+<span class="nc" id="L27">        return &quot;&quot;;</span>
+    }
+
+    /**
+     * Handle get request.
+     * @return response string
+     */
+    public String handleGet() {
+<span class="fc" id="L35">        JSONObject response = new JSONObject();</span>
+<span class="fc" id="L36">        Object eventID = getRequestAttributes().get(&quot;eventID&quot;);</span>
+<span class="fc" id="L37">        JSONArray eventArray = new JSONArray();</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (eventID != null) {</span>
+            try {
+<span class="fc" id="L40">                Long eventIDLong = Long.valueOf((String) eventID);</span>
+<span class="fc" id="L41">                Event event = EventList.eventList.get(eventIDLong);</span>
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">                if (event == null) {</span>
+<span class="fc" id="L43">                    throw new Exception();</span>
+                } else {
+<span class="nc" id="L45">                    eventArray.put(event.toJson());</span>
+<span class="nc" id="L46">                    response.put(&quot;status&quot;, 200);</span>
+<span class="nc" id="L47">                    response.put(&quot;events&quot;, eventArray);</span>
+<span class="nc" id="L48">                    return response.toString();</span>
+                }
+<span class="fc" id="L50">            } catch (Exception ex) {</span>
+<span class="fc" id="L51">                response.put(&quot;message&quot;, &quot;Invalid Event ID&quot;);</span>
+<span class="fc" id="L52">                response.put(&quot;status&quot;, 400);</span>
+<span class="fc" id="L53">                return response.toString();</span>
+            }
+        }
+
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        for (Event event : EventList.eventList.values()) {</span>
+<span class="fc" id="L58">            eventArray.put(event.toJson());</span>
+<span class="fc" id="L59">        }</span>
+<span class="fc" id="L60">        response.put(&quot;status&quot;, 200);</span>
+<span class="fc" id="L61">        response.put(&quot;events&quot;, eventArray);</span>
+<span class="fc" id="L62">        return response.toString();</span>
+    }
+
+    /**
+     * Handle post request.
+     * @param json request body
+     * @return response string
+     */
+    public String handlePost(Map json) {
+        Event newEvent;
+<span class="fc" id="L72">        JSONObject response = new JSONObject();</span>
+        try {
+<span class="fc" id="L74">            String newEventName = (String) json.get(&quot;eventName&quot;);</span>
+<span class="fc" id="L75">            String newTime = (String) json.get(&quot;time&quot;);</span>
+<span class="fc" id="L76">            String newDescription = (String) json.get(&quot;description&quot;);</span>
+<span class="fc" id="L77">            Long newDoctorID = (Long) json.get(&quot;doctorID&quot;);</span>
+<span class="fc" id="L78">            Long newPatientID = (Long) json.get(&quot;patientID&quot;);</span>
+<span class="pc bpc" id="L79" title="5 of 12 branches missed.">            if (newEventName == null || newTime == null || newDescription == null || newDescription == null || newDoctorID == null || newPatientID == null) {</span>
+<span class="fc" id="L80">                throw new Exception();</span>
+            }
+<span class="fc" id="L82">            newEvent = new Event(newEventName, newEventName, newDescription, newDoctorID, newPatientID);</span>
+<span class="fc" id="L83">            EventList.eventList.put(newEvent.eventID, newEvent);</span>
+<span class="fc" id="L84">            response.put(&quot;eventID&quot;, newEvent.eventID);</span>
+<span class="fc" id="L85">            response.put(&quot;status&quot;, 200);</span>
+<span class="fc" id="L86">        } catch (Exception e) {</span>
+<span class="fc" id="L87">            response.put(&quot;message&quot;, &quot;Invalid Parameters&quot;);</span>
+<span class="fc" id="L88">            response.put(&quot;status&quot;, 400);</span>
+<span class="fc" id="L89">        }</span>
+<span class="fc" id="L90">        return response.toString();</span>
+    }
+
+    /**
+     * Handle put request.
+     * @param json request body
+     * @return response string
+     */
+    public String handlePut(Map json) {
+<span class="fc" id="L99">        JSONObject response = new JSONObject();</span>
+        try {
+<span class="fc" id="L101">            Long eventID = (Long) json.get(&quot;eventID&quot;);</span>
+<span class="fc" id="L102">            String newEventName = (String) json.get(&quot;eventName&quot;);</span>
+<span class="fc" id="L103">            String newTime = (String) json.get(&quot;time&quot;);</span>
+<span class="fc" id="L104">            String newDescription = (String) json.get(&quot;description&quot;);</span>
+<span class="fc" id="L105">            Long newDoctorID = (Long) json.get(&quot;doctorID&quot;);</span>
+<span class="fc" id="L106">            Long newPatientID = (Long) json.get(&quot;patientID&quot;);</span>
+<span class="pc bpc" id="L107" title="6 of 14 branches missed.">            if (eventID == null || newEventName == null || newTime == null || newDescription == null || newDescription == null || newDoctorID == null || newPatientID == null) {</span>
+<span class="fc" id="L108">                throw new Exception();</span>
+            }
+<span class="fc" id="L110">            Event event = EventList.eventList.get(eventID);</span>
+<span class="fc" id="L111">            event.eventName = newEventName;</span>
+<span class="fc" id="L112">            event.time = newTime;</span>
+<span class="fc" id="L113">            event.description = newDescription;</span>
+<span class="fc" id="L114">            event.doctorID = newDoctorID;</span>
+<span class="fc" id="L115">            event.patientID = newPatientID;</span>
+<span class="fc" id="L116">            EventList.eventList.put(eventID, event);</span>
+<span class="fc" id="L117">            response.put(&quot;eventID&quot;, eventID);</span>
+<span class="fc" id="L118">            response.put(&quot;status&quot;, 200);</span>
+<span class="fc" id="L119">        } catch (Exception e) {</span>
+<span class="fc" id="L120">            response.put(&quot;message&quot;, &quot;Invalid Parameters&quot;);</span>
+<span class="fc" id="L121">            response.put(&quot;status&quot;, 400);</span>
+<span class="fc" id="L122">        }</span>
+<span class="fc" id="L123">        return response.toString();</span>
+    }
+
+    /**
+     * Handle delete request.
+     *
+     * @return response string
+     */
+    public String handleDelete() {
+<span class="fc" id="L132">        JSONObject response = new JSONObject();</span>
+        try {
+<span class="fc" id="L134">            Long eventID = Long.valueOf((String) getRequestAttributes().get(&quot;eventID&quot;));</span>
+<span class="fc" id="L135">            Event event = EventList.eventList.get(eventID);</span>
+<span class="fc" id="L136">            response.put(&quot;eventID&quot;, event.eventID);</span>
+<span class="fc" id="L137">            response.put(&quot;status&quot;, 200);</span>
+<span class="fc" id="L138">            EventList.eventList.remove(event.eventID);</span>
+<span class="fc" id="L139">        } catch (Exception e) {</span>
+<span class="fc" id="L140">            response.put(&quot;message&quot;, &quot;Invalid Event ID&quot;);</span>
+<span class="fc" id="L141">            response.put(&quot;status&quot;, 400);</span>
+<span class="fc" id="L142">        }</span>
+<span class="fc" id="L143">        return response.toString();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
