@@ -1,0 +1,62 @@
+type Appointment {
+  id: ID!
+  time: Int
+  doctor: Doctor
+  patient: Patient
+}
+
+type Doctor {
+  id: ID!
+  name: String
+  clinicName: String
+  appointments: [Appointment]
+}
+
+type Patient {
+  id: ID!
+  name: String
+  appointments: [Appointment]
+}
+
+type Query {
+  doctors: [Doctor]
+}
+
+type Query {
+  patients: [Patient]
+}
+
+type Query {
+  doctorByID(id: ID!): Doctor
+}
+
+type Query {
+  availableTimeslotByID(id: ID!): [Int]
+}
+
+type Mutation{
+  createAppointment(input: CreateAppointmentInput!): Appointment
+}
+
+input CreateAppointmentInput {
+    doctorID: ID!,
+    patientID: ID!,
+    time: Int
+}
+
+type Mutation{
+  cancelAppointment(input: CancelAppointmentInput!): Appointment
+}
+
+input CancelAppointmentInput {
+    appointmentID: ID!
+}
+
+type Mutation{
+  updateAppointment(input: UpdateAppointmentInput!): Appointment
+}
+
+input UpdateAppointmentInput {
+    appointmentID: ID!
+    patientName: String
+}
