@@ -1,0 +1,56 @@
+syntax = "proto2";
+
+option java_multiple_files = true;
+option java_outer_classname = "InventoryServiceProto";
+option objc_class_prefix = "RTG";
+
+service InventoryService  {
+  // RPC for creating a book
+  rpc CreateBook(Book) returns (CreateBookResponse) {}
+  
+  // RPC for getting a book with ISBN
+  rpc GetBook(GetBookRequest) returns (Book) {}
+}
+
+
+message Book {
+    // ISBN, required, unique
+    required string ISBN = 1;
+    // Book title, required
+    required string title = 2;
+    // Book author, optional
+    optional string author = 3 [default=""];
+    // Boobk genre, optional, repeated
+    repeated string genre = 4;
+    // Publish year, optional
+    optional int32 year = 5 [default=0];
+}
+
+// An InventoryItem is an inventory for a media (Book)
+message InventoryItem {
+    // Inventory number, required
+    required int32 inventoryNumber = 1;
+    // The media inventory belongs to, required
+    oneof media {
+        Book book = 2;
+    }
+    // Inventory available or not, required
+    required InventoryStatus status = 3;
+}
+
+enum InventoryStatus {
+    // Inventory available
+    AVAILABLE = 0;
+    // Inventory unavailable
+    TAKEN = 1;
+}
+
+message GetBookRequest {
+    // Book ISBN, required
+    required string ISBN = 1;
+}
+
+message CreateBookResponse {
+    // CreateBook response message, required
+    optional string msg = 2 [default=""];
+}

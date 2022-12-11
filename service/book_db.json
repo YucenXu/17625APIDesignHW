@@ -1,0 +1,21 @@
+[
+    {
+        "ISBN": "0",
+        "title": "Test Book",
+        "author": "Anonymous Author",
+        "genre": [
+            "test"
+        ],
+        "year": 2022
+    },
+    {
+        "ISBN": "0137133367",
+        "title": "CSAPP",
+        "author": "Randal Bryant",
+        "genre": [
+            "computer",
+            "OS"
+        ],
+        "year": 2010
+    }
+]
